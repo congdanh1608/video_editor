@@ -55,8 +55,8 @@ class VideoEditorController extends ChangeNotifier {
       : _video = VideoPlayerController.file(File(
     // https://github.com/flutter/flutter/issues/40429#issuecomment-549746165
     ///Danh updated
-      (Platform.isIOS && Uri.encodeFull(Uri.decodeFull(file.path)) != file.path)
-          ? Uri.encodeFull(file.path)
+      (Platform.isIOS && path.contains('%'))
+          ? Uri.decodeFull(file.path)
           : file.path
   )),
         trimStyle = trimStyle ?? TrimSliderStyle(),
