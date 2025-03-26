@@ -145,6 +145,7 @@ class VideoEditorController extends ChangeNotifier {
         videoHeight * (maxCrop.dy - minCrop.dy),
       ).size;
 
+  ///Danh updated
   bool isEncoded(String path) {
     return Uri.encodeFull(Uri.decodeFull(path)) != path;
   }
