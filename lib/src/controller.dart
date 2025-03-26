@@ -54,8 +54,8 @@ class VideoEditorController extends ChangeNotifier {
   })
       : _video = VideoPlayerController.file(File(
     // https://github.com/flutter/flutter/issues/40429#issuecomment-549746165
-    ///Danh updated
-      (Platform.isIOS && path.contains('%'))
+    ///Danh updated => IOS need real path = no encode
+      (Platform.isIOS && file.path.contains('%'))
           ? Uri.decodeFull(file.path)
           : file.path
   )),
