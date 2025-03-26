@@ -145,9 +145,9 @@ class VideoEditorController extends ChangeNotifier {
         videoHeight * (maxCrop.dy - minCrop.dy),
       ).size;
 
-bool isEncoded(String path) {
-  return Uri.encodeFull(Uri.decodeFull(path)) != path;
-}
+  bool isEncoded(String path) {
+    return Uri.encodeFull(Uri.decodeFull(path)) != path;
+  }
   
   /// The [preferredCropAspectRatio] param is the selected aspect ratio (9:16, 3:4, 1:1, ...)
   double? get preferredCropAspectRatio => _preferredCropAspectRatio;
