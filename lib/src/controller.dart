@@ -54,7 +54,7 @@ class VideoEditorController extends ChangeNotifier {
     TrimSliderStyle? trimStyle,
   })  : _video = VideoPlayerController.file(File(
           // https://github.com/flutter/flutter/issues/40429#issuecomment-549746165
-          Platform.isIOS ? Uri.encodeFull(file.path) : file.path,
+          Platform.isIOS && !isEncoded(file.path) ? Uri.encodeFull(file.path) : file.path,
         )),
         trimStyle = trimStyle ?? TrimSliderStyle(),
         assert(maxDuration > minDuration,
@@ -145,6 +145,10 @@ class VideoEditorController extends ChangeNotifier {
         videoHeight * (maxCrop.dy - minCrop.dy),
       ).size;
 
+bool isEncoded(String path) {
+  return Uri.encodeFull(Uri.decodeFull(path)) != path;
+}
+  
   /// The [preferredCropAspectRatio] param is the selected aspect ratio (9:16, 3:4, 1:1, ...)
   double? get preferredCropAspectRatio => _preferredCropAspectRatio;
   set preferredCropAspectRatio(double? value) {
